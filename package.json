@@ -1,0 +1,11 @@
+{
+  "name": "mean_cat_feeder",
+  "version": "1.0.0",
+  "description": "feed your cat from anywhere",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jake Miller, Zak Espley, and Evan Something",
+  "license": "ISC"
+}
