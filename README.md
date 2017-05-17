@@ -2,12 +2,31 @@
 Feed Your Cat From Anywhere
 
 # Setup
-Download and Install Node.js
-  link: https://nodejs.org/en/
+Download and Install Node.js via terminal
+This is for a Raspberry Pi 2 with ARMv7 running Jessie Lite
   
-  or from command line on pi:
-    curl -sLS https://apt.adafruit.com/add | sudo bash
-    sudo apt-get install node
+  Run the following commands
+  ```
+  cd /usr/tmp
+  wget https://nodejs.org/dist/v6.10.3/node-v6.10.3-linux-armv7l.tar.xz
+  tar -xvf node-v6.10.3-linux-armv7l.tar.xz
+  cd node-v6.10.3-linux-armv7l.tar.xz
+  sudo cp -R /usr/local
+  sudo reboot
+  ```
+  If you want to get a different version of Node.js then go to 
+  
+  https://nodejs.org/en/download/
+  
+  and copy the link to the download for the proper version that you want. 
+  The replace the link in the wget line. You will aslo need to use the proper file names
+  in the tar and cd lines.
+  
+  Lastly, once you have rebooted you will can check if node was installed properly by:
+  
+  `node -v`
+  
+  Ther version should match the one you downlaoded.
   
   to verify installation from command line: node -v
   
