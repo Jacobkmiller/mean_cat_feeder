@@ -9,6 +9,7 @@
         var effect = document.getElementById('effect');
         var light = document.getElementById('light')
         var isEffectActive = false;
+        var light_status = false;
 
         start.addEventListener('click', function (e) {
             var address = document.getElementById('address').value;
@@ -68,7 +69,13 @@
         }, false);
 
         light.addEventListener('click',function(){
-
+            if (!light_status) {
+                $.ajax({url: '/on'});
+                light_status = true;
+            } else {
+                $.ajax({url: '/off'});
+                light_status = false;
+            }
         }, false)
     });
 })();
