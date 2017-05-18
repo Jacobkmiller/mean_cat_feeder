@@ -7,6 +7,7 @@
         var canvas = document.getElementById('c');
         var ctx = canvas.getContext('2d');
         var effect = document.getElementById('effect');
+        var light = document.getElementById('light')
         var isEffectActive = false;
 
         start.addEventListener('click', function (e) {
@@ -65,5 +66,9 @@
         effect.addEventListener('click', function () {
             isEffectActive = !isEffectActive;
         }, false);
+
+        light.addEventListener('click',function(){
+
+        }, false)
     });
 })();
