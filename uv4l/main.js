@@ -67,15 +67,5 @@
         effect.addEventListener('click', function () {
             isEffectActive = !isEffectActive;
         }, false);
-
-        light.addEventListener('click',function(){
-            if (!light_status) {
-                $.ajax({url: '/on'});
-                light_status = true;
-            } else {
-                $.ajax({url: '/off'});
-                light_status = false;
-            }
-        }, false)
     });
 })();
