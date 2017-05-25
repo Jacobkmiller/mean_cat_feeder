@@ -1,0 +1,3 @@
+[submodule "h264-live-player"]
+	path = h264-live-player
+	url = https://github.com/131/h264-live-player.git
