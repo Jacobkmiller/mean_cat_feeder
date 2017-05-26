@@ -26,7 +26,7 @@ app.use(express.static(__dirname + '/h264-live-player/vendor/dist'));
 //app.use(express.static(__dirname ));
 //app.use(express.static(__dirname + '/vendor/dist'));
 app.get("/", function(req,res){
-  res.sendFile('index.html');
+  res.sendFile('/index.html');
 });
 
 
