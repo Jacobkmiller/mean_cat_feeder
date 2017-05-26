@@ -21,11 +21,13 @@ const app  = express();
 //app.use(express.static(__dirname + '/public'));
 
 //app.use(express.static(__dirname ));
-//app.use(express.static(__dirname + '/h264-live-player/vendor/dist'));
+app.use(express.static(__dirname + '/h264-live-player/vendor/dist'));
 
 //app.use(express.static(__dirname ));
 //app.use(express.static(__dirname + '/vendor/dist'));
-//app.get
+app.get("/", function(req,res){
+  res.sendFile('index.html');
+});
 
 
 const server  = http.createServer(app);
