@@ -19,8 +19,10 @@ const app  = express();
 
   //public website
 //app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname ));
+//app.use(express.static(__dirname ));
 app.use(express.static(__dirname + '/vendor/dist'));
+app.get
+
 
 const server  = http.createServer(app);
 const silence = new WebStreamerServer(server);
