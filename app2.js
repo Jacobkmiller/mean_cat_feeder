@@ -13,6 +13,7 @@ const http    = require('http');
 const express = require('express');
 const path = require('path');
 const gpio = require('rpi-gpio');
+gpio.
 
 
 const WebStreamerServer = require('./h264-live-player/lib/raspivid');
@@ -29,6 +30,18 @@ app.use(express.static(__dirname + '/h264-live-player/vendor/dist'));
 //app.use(express.static(__dirname + '/vendor/dist'));
 app.get("/", function(req,res){
   res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+app.get('/on', function(req, res){
+  gpio.setup(4, gpio.DIR_OUT, function(){
+    gpio.write(4, true);
+  });
+});
+
+app.get('/off', function(req, res){
+  gpio.setup(4, gpio.DIR_OUT, function(){
+    gpio.write(4, false);
+  });
 });
 
 
