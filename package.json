@@ -9,6 +9,8 @@
   "author": "Jake Miller, Zak Espley, and Evan Something",
   "license": "ISC",
   "dependencies": {
-    "node-rtsp-stream": "0.0.3"
+    "express": "^4.15.3",
+    "node-rtsp-stream": "0.0.3",
+    "rpi-gpio": "^0.8.1"
   }
 }
