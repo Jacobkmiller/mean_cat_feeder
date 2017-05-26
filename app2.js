@@ -11,6 +11,8 @@
 
 const http    = require('http');
 const express = require('express');
+const path = require('path');
+const gpio = require('rpi-gpio');
 
 
 const WebStreamerServer = require('./h264-live-player/lib/raspivid');
@@ -26,7 +28,7 @@ app.use(express.static(__dirname + '/h264-live-player/vendor/dist'));
 //app.use(express.static(__dirname ));
 //app.use(express.static(__dirname + '/vendor/dist'));
 app.get("/", function(req,res){
-  res.sendFile('/index.html');
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 
