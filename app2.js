@@ -12,9 +12,10 @@
 const http    = require('http');
 const express = require('express');
 const path = require('path');
-const gpio = require('rpi-gpio');
-gpio.
+const gpio = require('pigpio').Gpio;
 
+var light = gpio(4);
+light.mode(gpio.OUTPUT);
 
 const WebStreamerServer = require('./h264-live-player/lib/raspivid');
 
@@ -33,15 +34,15 @@ app.get("/", function(req,res){
 });
 
 app.get('/on', function(req, res){
-  gpio.setup(4, gpio.DIR_OUT, function(){
-    gpio.write(4, true);
-  });
+  console.log("Light On");
+  light.digitalWrite(1); 
+  res.send("ON");
 });
 
 app.get('/off', function(req, res){
-  gpio.setup(4, gpio.DIR_OUT, function(){
-    gpio.write(4, false);
-  });
+  console.log("Light Off");
+  light.digitalWrite(0);
+  res.send("OFF");
 });
 
 

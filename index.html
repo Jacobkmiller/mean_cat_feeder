@@ -13,9 +13,13 @@
     var light = 0;
     function toggleLight(){
       if (!light) {
+	console.log('On');
         $.get("/on");
+	light = 1;
       } else {
+	console.log('Off');
         $.get("/off");
+	light = 0;
       };
     }
     </script>
