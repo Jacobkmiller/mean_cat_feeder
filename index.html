@@ -43,6 +43,7 @@
 var canvas = document.createElement("canvas");
 document.body.appendChild(canvas);
 
+
 // Create h264 player
 var uri = "ws://" + document.location.host;
 var wsavc = new WSAvcPlayer(canvas, "webgl", 1, 35);
@@ -52,6 +53,14 @@ wsavc.connect(uri);
 //expose instance for button callbacks
 window.wsavc = wsavc;
 
+    </script>
+    <script type="text/javascript">
+      const WebSocket = require('ws');
+      const ws = new WebSocket('ws://98.171.176.160:8081');
+      var vid = $("canvas");
+      vid.mousedown(function(e){
+        ws.send(e.clientY);    
+      });
     </script>
   </body>
 </html>
