@@ -5,13 +5,14 @@
 
 /**
 * Run this on a raspberry pi
-* then browse (using google chrome/firefox) to http://[pi ip]:8080/
+* then browse (using google chrome/firefox) to http://[pi ip]:8081/
 */
 
 
 const http    = require('http');
 const express = require('express');
 const path = require('path');
+const WebSocket = require('ws');
 const gpio = require('pigpio').Gpio;
 
 var light = gpio(4);
@@ -62,7 +63,15 @@ app.get('/spin', function(req, res){
 
 
 const server  = http.createServer(app);
+const wss = new WebSocket.Server({server});
 const silence = new WebStreamerServer(server);
+
+wss.on("connection", function(ws, req){
+  ws.on('message', function incoming(message){
+    var y = int(message)*2000/940+500
+    servo.servoWrite(y);
+  });
+});
 
 const port = 8081;
 console.log("Listening on port " + port);
