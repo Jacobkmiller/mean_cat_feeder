@@ -13,7 +13,6 @@ const http    = require('http');
 const express = require('express');
 const path = require('path');
 const gpio = require('rpi-gpio');
-gpio.
 
 
 const WebStreamerServer = require('./h264-live-player/lib/raspivid');
