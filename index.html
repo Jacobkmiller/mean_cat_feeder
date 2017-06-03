@@ -13,16 +13,26 @@
     var light = 0;
     function toggleLight(){
       if (!light) {
+	      console.log('On');
         $.get("/on");
-      } else {
-        $.get("/off");
-      };
+	      light = 1;
+        } else {
+        console.log('Off');
+              $.get("/off");
+        light = 0;
+            };
+    };
+
+    function rotate() {
+      $.get("/spin");
+      console.log("SPIN")
     }
     </script>
     <h1>Let's feed some cats</h1>
     <button type="button" onclick="wsavc.playStream()">Start Video</button>
     <button type="button" onclick="wsavc.stopStream()">Stop Video</button>
-    <button type="button" onclick="toggleLight()">Liight</button>
+    <button type="button" onclick="toggleLight()">Light</button>
+    <button type="button" onclick="rotate()">Rotate</button>
     <!--<button type="button" onclick="wsavc.disconnect()">Disconnect</button>-->
     <br/>
 
