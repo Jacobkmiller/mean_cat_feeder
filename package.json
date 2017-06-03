@@ -12,6 +12,7 @@
     "express": "^4.15.3",
     "node-rtsp-stream": "0.0.3",
     "pigpio": "^0.5.1",
-    "rpi-gpio": "^0.8.1"
+    "rpi-gpio": "^0.8.1",
+    "ws": "^3.0.0"
   }
 }

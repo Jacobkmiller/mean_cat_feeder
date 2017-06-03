@@ -58,6 +58,7 @@ app.get('/spin', function(req, res){
   } else if (pulsewidth <= 1000) {
     i = -i;
   }
+  res.send("Rotate");
 });
 
 
