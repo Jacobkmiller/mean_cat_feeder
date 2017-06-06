@@ -65,16 +65,27 @@ app.get('/spin', function(req, res){
 
 const server  = http.createServer(app);
 const wss = new WebSocket.Server({server:server,
-                                  path:'/servo'});
+                                  path:'/servo',
+				  port:'3000'
+});
+//const wss = new WebSocket.Server({port:3000,
+//				  host:"ws://192.168.50.126"
+//});
+
 const silence = new WebStreamerServer(server);
 
 wss.on("connection", function(ws, req){
   ws.on('message', function incoming(message){
-    var y = int(message)*2000/940+500
-    servo.servoWrite(y);
+    console.log(message);
+    var y = Number(message)*1875/540+500;
+    console.log(Math.round(y));	
+    servo.servoWrite(Math.round(y));
   });
 });
 
+wss.on('open', function(ws, req){
+	ws.send("Connected to servo");
+});
 const port = 8081;
 console.log("Listening on port " + port);
 server.listen(port);

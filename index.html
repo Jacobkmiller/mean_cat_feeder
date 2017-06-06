@@ -8,6 +8,7 @@
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/1.0.5/jquery.mobile-events.js"></script>
 
     <script type="text/javascript">
     var light = 0;
@@ -54,13 +55,27 @@ wsavc.connect(uri);
 window.wsavc = wsavc;
 
     </script>
-    <!--<script type="text/javascript">
-      const WebSocket = require('ws');
-      const ws = new WebSocket('ws://98.171.176.160:8081/servo');
+   <script type="text/javascript">
+      const ws = new WebSocket('ws://98.171.176.160:3000/servo');
+      var mousedown = false;
       var vid = $("canvas");
       vid.mousedown(function(e){
-        ws.send(e.clientY);    
+        mousedown = true;    
       });
-    </script>-->
+	vid.mousemove(function(e){
+		if (mousedown) {
+			ws.send(e.offsetY);
+		}
+	});
+	vid.mouseup(function(e){
+		mousedown=false;
+});
+	vid.on('tapmove', function(e, touch) {
+		ws.send(touch.offset.y);
+});
+	ws.onmessage = function(e) {
+	console.log(e.data);
+};
+    </script>
   </body>
 </html>
