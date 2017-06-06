@@ -64,7 +64,8 @@ app.get('/spin', function(req, res){
 
 
 const server  = http.createServer(app);
-const wss = new WebSocket.Server({server});
+const wss = new WebSocket.Server({server:server,
+                                  path:'/servo'});
 const silence = new WebStreamerServer(server);
 
 wss.on("connection", function(ws, req){
