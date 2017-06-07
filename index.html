@@ -64,14 +64,18 @@ window.wsavc = wsavc;
       });
 	vid.mousemove(function(e){
 		if (mousedown) {
-			ws.send(e.offsetY);
+      var cooridinates = {x:e.offsetX, y:e.offsetY};
+			ws.send(JSON.stringify(cooridinates));
 		}
 	});
 	vid.mouseup(function(e){
 		mousedown=false;
 });
 	vid.on('tapmove', function(e, touch) {
-		ws.send(touch.offset.y);
+    if (touch.offset.y <= 540 && touch.offset.x <= 940) {
+      var cooridinates = {x:touch.offset.x, y:touch.offset.y};
+			ws.send(JSON.stringify(cooridinates));
+    }
 });
 	ws.onmessage = function(e) {
 	console.log(e.data);

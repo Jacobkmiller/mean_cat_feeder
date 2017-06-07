@@ -16,10 +16,12 @@ const WebSocket = require('ws');
 const gpio = require('pigpio').Gpio;
 
 var light = gpio(4);
-var servo = gpio(17);
+var servoy = gpio(17);
+var servox = gpio(23);
 var pulsewidth = 1500;
 var i = 200;
-servo.mode(gpio.OUTPUT);
+servoy.mode(gpio.OUTPUT);
+servox.mode(gpio.OUTPUT);
 light.mode(gpio.OUTPUT);
 
 const WebStreamerServer = require('./h264-live-player/lib/raspivid');
@@ -51,7 +53,7 @@ app.get('/off', function(req, res){
 });
 
 app.get('/spin', function(req, res){
-  servo.servoWrite(pulsewidth);
+  servoy.servoWrite(pulsewidth);
   pulsewidth += i;
 
   if (pulsewidth >= 2000) {
@@ -66,7 +68,7 @@ app.get('/spin', function(req, res){
 const server  = http.createServer(app);
 const wss = new WebSocket.Server({server:server,
                                   path:'/servo',
-				  port:'3000'
+                                  port:'3000'
 });
 //const wss = new WebSocket.Server({port:3000,
 //				  host:"ws://192.168.50.126"
@@ -76,10 +78,12 @@ const silence = new WebStreamerServer(server);
 
 wss.on("connection", function(ws, req){
   ws.on('message', function incoming(message){
-    console.log(message);
-    var y = Number(message)*1875/540+500;
-    console.log(Math.round(y));	
-    servo.servoWrite(Math.round(y));
+    var coordinates = JSON.parse(message);
+    var y = Number(coordinates.y)*1875/540+500;
+    var x = Number(coordinates.x)*1875/940+500;
+    console.log(Math.round(y) + ", " + Math.round(x));	
+    servoy.servoWrite(Math.round(y));
+    servox.servoWrite(Math.round(x));
   });
 });
 
