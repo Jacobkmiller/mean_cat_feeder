@@ -41,7 +41,7 @@ var canvas = document.createElement("canvas");
 document.body.appendChild(canvas);
 
 // Create h264 player
-var uri = "ws://98.171.176.160:8081";
+var uri = "ws://98.171.176.160:3000";
 console.log(uri);
 var wsavc = new WSAvcPlayer(canvas, "webgl", 1, 35);
 wsavc.connect(uri);

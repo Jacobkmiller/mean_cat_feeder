@@ -79,13 +79,13 @@ const silence = new WebStreamerServer(server);
 wss.on("connection", function(ws, req){
   ws.on('message', function incoming(message){
     var coordinates = JSON.parse(message);
-    var y = Number(coordinates.y)*1875/540+500;
-    var x = Number(coordinates.x)*1875/940+500;
-    console.log(Math.round(y) + ", " + Math.round(x));	
+    var y = Number(coordinates.y)*200/(54*10)+500;
+    var x = Number(coordinates.x)*200/(96*10)+1950;
+    console.log(Math.round(x) + ", " + Math.round(y));	
     servoy.servoWrite(Math.round(y));
     servox.servoWrite(Math.round(x));
   });
-});
+}); 
 
 wss.on('open', function(ws, req){
 	ws.send("Connected to servo");

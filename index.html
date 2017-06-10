@@ -30,6 +30,9 @@
     }
     </script>
     <h1>Let's feed some cats</h1>
+    <p>Start by clicking the Start Video button. Then feel free to turn on the lights. 
+    Lastly, you can click on the video feed and move your mouse around to control the servos.
+    </p>
     <button type="button" onclick="wsavc.playStream()">Start Video</button>
     <button type="button" onclick="wsavc.stopStream()">Stop Video</button>
     <button type="button" onclick="toggleLight()">Light</button>
@@ -71,12 +74,12 @@ window.wsavc = wsavc;
 	vid.mouseup(function(e){
 		mousedown=false;
 });
-	vid.on('tapmove', function(e, touch) {
-    if (touch.offset.y <= 540 && touch.offset.x <= 940) {
-      var cooridinates = {x:touch.offset.x, y:touch.offset.y};
-			ws.send(JSON.stringify(cooridinates));
-    }
-});
+//	vid.on('tapmove', function(e, touch) {
+//    if (touch.offset.y <= 540 && touch.offset.x <= 940) {
+//      var cooridinates = {x:touch.offset.x, y:touch.offset.y};
+//			ws.send(JSON.stringify(cooridinates));
+//    }
+//});
 	ws.onmessage = function(e) {
 	console.log(e.data);
 };
