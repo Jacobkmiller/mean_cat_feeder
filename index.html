@@ -23,10 +23,16 @@
         light = 0;
             };
     };
-
-    function rotate() {
-      $.get("/spin");
-      console.log("SPIN")
+    var laser = false;
+    function laserToggle() {
+      $.get("/laser");
+      if (laser) {
+        console.log("Laser On");
+        laser = false;
+      } else {
+        console.log("Laser Off");
+        laser = True;
+      }
     }
     </script>
     <h1>Let's feed some cats</h1>
@@ -36,7 +42,7 @@
     <button type="button" onclick="wsavc.playStream()">Start Video</button>
     <button type="button" onclick="wsavc.stopStream()">Stop Video</button>
     <button type="button" onclick="toggleLight()">Light</button>
-    <button type="button" onclick="rotate()">Rotate</button>
+    <button type="button" onclick="laserToggle()">Laser Toggle</button>
     <!--<button type="button" onclick="wsavc.disconnect()">Disconnect</button>-->
     <br/>
 

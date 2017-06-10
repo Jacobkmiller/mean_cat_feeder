@@ -18,11 +18,14 @@ const gpio = require('pigpio').Gpio;
 var light = gpio(4);
 var servoy = gpio(17);
 var servox = gpio(23);
+var laser = gpio(24);
 var pulsewidth = 1500;
 var i = 200;
 servoy.mode(gpio.OUTPUT);
 servox.mode(gpio.OUTPUT);
 light.mode(gpio.OUTPUT);
+laser.mode(gpio.OUTPUT);
+var laserToggle = false;
 
 const WebStreamerServer = require('./h264-live-player/lib/raspivid');
 
@@ -52,16 +55,16 @@ app.get('/off', function(req, res){
   res.send("OFF");
 });
 
-app.get('/spin', function(req, res){
-  servoy.servoWrite(pulsewidth);
-  pulsewidth += i;
-
-  if (pulsewidth >= 2000) {
-    i = -i;
-  } else if (pulsewidth <= 1000) {
-    i = -i;
+app.get('/laser', function(req, res){
+  if (laserToggle) {
+    laser.digitalWrite(0);
+    laserToggle = false;
+    res.send("Laser OFF");
+  } else {
+    laser.digitalWrite(1);
+    laserToggle = true;
+    res.send("Laser ON");
   }
-  res.send("Rotate");
 });
 
 
